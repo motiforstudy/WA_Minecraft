@@ -1,8 +1,22 @@
+let currentCursor = document.body.style.cursor
+let isBoxAlreadyExist = false
+let isShowedBox = false
+let createBox
+let countOfLeaves = 0;
+let countOfTrunk = 0;
+let countOfSoilWithGrass = 0;
+let countOfSoil = 0;
+let countOfStone = 0;
+let countOfDiamond = 0;
+let countOfGold = 0;
+let countOfCoal = 0;
+let countOfCrystal = 0;
+
 const main = document.getElementById('main-id')
 function startPosition(){
     for (let i = 0; i <= 999; i++){
     const createDiv = document.createElement("div");
-    // createDiv.innerText = i;
+    createDiv.className = "sky"
     if (i === 325 || i === 326 || i === 337 || i === 338 || i === 344 || i === 345 || i === 364 || i === 365 || i === 366 || i === 367
         || i === 376 || i === 377 || i === 378 || i === 379 || i === 383 || i === 384 || i === 385 || i === 386 || i === 403 || i === 404
         || i === 405 || i === 406 || i === 407 || i === 408 || i === 415 || i === 416 || i === 417 || i === 418 
@@ -60,8 +74,89 @@ function startPosition(){
         ){
         createDiv.className = "crystal"
     }
+
+    createDiv.addEventListener("click", ()=>{
+        if ((currentCursor === "ax") && (createDiv.className === "trunk" || createDiv.className === "leaves")){
+            if (createDiv.className === "trunk"){
+                countOfTrunk ++
+            } else {
+                countOfLeaves ++
+            }
+            createDiv.className = "sky"
+        } else if ((currentCursor === "sword") && (createDiv.className === "monster_face" || createDiv.className === "monster_body")){
+            createDiv.className = "sky"
+        } else if ((currentCursor === "spade") && (createDiv.className === "soil_with_grass" || createDiv.className === "soil")){
+            if (createDiv.className === "soil_with_grass"){
+                countOfSoilWithGrass ++
+            } else {
+                countOfSoil ++
+            }
+            createDiv.className = "sky"
+        } else if ((currentCursor === "pickaxe") && (createDiv.className === "stone" || createDiv.className === "diamond" || createDiv.className === "gold" || createDiv.className === "coal" || createDiv.className === "crystal")){
+            if (createDiv.className === "stone"){
+                countOfStone ++
+            } else if (createDiv.className === "diamond") {
+                countOfDiamond ++
+            } else if (createDiv.className === "gold") {
+                countOfGold ++
+            } else if (createDiv.className === "coal"){
+                countOfCoal ++
+            } else {
+                countOfCrystal ++
+            }
+            createDiv.className = "sky"
+        }
+    })
     main.appendChild(createDiv);
     }
+
+    document.body.style.cursor = "context-menu";
 }
 
 startPosition()
+
+const resetGame = document.getElementById("restart_box");
+resetGame.addEventListener("click", restartFunction);
+function restartFunction() {
+  window.location.reload()
+}
+
+const getAx = document.getElementById("ax");
+getAx.addEventListener("click", ()=>{
+    document.body.style.cursor = `url(images/ax_icon.ico), auto`;
+    currentCursor = "ax"
+});
+
+const getSpade = document.getElementById("spade");
+getSpade.addEventListener("click", ()=>{
+    document.body.style.cursor = `url(images/shovel_icon.ico), auto`;
+    currentCursor = "spade"
+});
+
+const getPickaxe = document.getElementById("pickaxe");
+getPickaxe.addEventListener("click", ()=>{
+    document.body.style.cursor = `url(images/pickaxe_icon.ico), auto`;
+    currentCursor = "pickaxe"
+});
+
+const getSword = document.getElementById("sword");
+getSword.addEventListener("click", ()=>{
+    document.body.style.cursor = `url(images/sword_icon.ico), auto`;
+    currentCursor = "sword"
+});
+
+const getBox = document.getElementById("box");
+getBox.addEventListener("click", ()=>{
+    if (! isBoxAlreadyExist){
+        createBox = document.createElement("div");
+        createBox.className = "box";
+        main.appendChild(createBox);
+        isBoxAlreadyExist = true;
+    } else {
+        if (createBox.style.display === "none"){
+            createBox.style.display = "block"
+        } else {
+            createBox.style.display = "none"
+        }
+    }
+});

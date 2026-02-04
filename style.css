@@ -28,6 +28,7 @@ main div:hover{
 .leaves{
     background: url(images/leaves.png);
     background-size: cover;
+    background-color: black;
 }
 
 .trunk{
@@ -107,9 +108,23 @@ footer{
     border-color: white;
 }
 
+.tools div button{
+    background-color: rgb(68, 68, 68)
+}
+
 #box{
     height: 60%;
     width: 50%;    
+}
+
+.box{
+  position: fixed;
+  bottom: 50px;
+  left: 90px;
+  width: 520px;
+  height: 430px;
+  border-radius: 8px;
+  background-color: #757575;
 }
 
 #ax{
@@ -137,5 +152,9 @@ footer{
 }
 
 #restart_box{
-    margin-top: 4%;
+    margin-top: 3%;
+}
+
+#restart_box:hover{
+    background-color: brown;
 }
