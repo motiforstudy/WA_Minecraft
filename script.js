@@ -1,7 +1,7 @@
 let currentCursor = document.body.style.cursor
 let isBoxAlreadyExist = false
 let isShowedBox = false
-let createBox
+let createBox;
 let countOfLeaves = 0;
 let countOfTrunk = 0;
 let countOfSoilWithGrass = 0;
@@ -77,10 +77,24 @@ function startPosition(){
 
     createDiv.addEventListener("click", ()=>{
         if ((currentCursor === "ax") && (createDiv.className === "trunk" || createDiv.className === "leaves")){
-            if (createDiv.className === "trunk"){
+            if (createDiv.className === "trunk"){             
                 countOfTrunk ++
+                if (countOfTrunk === 1){
+                    const createDivForBox = document.createElement("div");
+                    createDivForBox.className = "trunk"
+                    createDivForBox.style.height = "3rem";
+                    createDivForBox.style.width = "3rem";
+                    createBox.appendChild(createDivForBox);
+                }
             } else {
-                countOfLeaves ++
+                countOfLeaves ++;
+                if (countOfLeaves === 1){
+                    const createDivForBox = document.createElement("div");
+                    createDivForBox.className = "leaves"
+                    createDivForBox.style.height = "3rem";
+                    createDivForBox.style.width = "3rem";
+                    createBox.appendChild(createDivForBox);
+                }
             }
             createDiv.className = "sky"
         } else if ((currentCursor === "sword") && (createDiv.className === "monster_face" || createDiv.className === "monster_body")){
@@ -88,21 +102,71 @@ function startPosition(){
         } else if ((currentCursor === "spade") && (createDiv.className === "soil_with_grass" || createDiv.className === "soil")){
             if (createDiv.className === "soil_with_grass"){
                 countOfSoilWithGrass ++
+                if (countOfSoilWithGrass === 1){
+                    const createDivForBox = document.createElement("div");
+                    createDivForBox.className = "soil_with_grass"
+                    createDivForBox.style.height = "3rem";
+                    createDivForBox.style.width = "3rem";
+                    createBox.appendChild(createDivForBox);
+                }
+
             } else {
                 countOfSoil ++
+                if (countOfSoil === 1){
+                    const createDivForBox = document.createElement("div");
+                    createDivForBox.className = "soil"
+                    createDivForBox.style.height = "3rem";
+                    createDivForBox.style.width = "3rem";
+                    createBox.appendChild(createDivForBox);
+                }
             }
             createDiv.className = "sky"
         } else if ((currentCursor === "pickaxe") && (createDiv.className === "stone" || createDiv.className === "diamond" || createDiv.className === "gold" || createDiv.className === "coal" || createDiv.className === "crystal")){
             if (createDiv.className === "stone"){
                 countOfStone ++
+                if (countOfStone === 1){
+                    const createDivForBox = document.createElement("div");
+                    createDivForBox.className = "stone"
+                    createDivForBox.style.height = "3rem";
+                    createDivForBox.style.width = "3rem";
+                    createBox.appendChild(createDivForBox);
+                }
             } else if (createDiv.className === "diamond") {
                 countOfDiamond ++
+                if (countOfDiamond === 1){
+                    const createDivForBox = document.createElement("div");
+                    createDivForBox.className = "diamond"
+                    createDivForBox.style.height = "3rem";
+                    createDivForBox.style.width = "3rem";
+                    createBox.appendChild(createDivForBox);
+                }
             } else if (createDiv.className === "gold") {
                 countOfGold ++
+                if (countOfGold === 1){
+                    const createDivForBox = document.createElement("div");
+                    createDivForBox.className = "gold"
+                    createDivForBox.style.height = "3rem";
+                    createDivForBox.style.width = "3rem";
+                    createBox.appendChild(createDivForBox);
+                }
             } else if (createDiv.className === "coal"){
                 countOfCoal ++
+                if (countOfCoal === 1){
+                    const createDivForBox = document.createElement("div");
+                    createDivForBox.className = "coal"
+                    createDivForBox.style.height = "3rem";
+                    createDivForBox.style.width = "3rem";
+                    createBox.appendChild(createDivForBox);
+                }
             } else {
                 countOfCrystal ++
+                if (countOfCrystal === 1){
+                    const createDivForBox = document.createElement("div");
+                    createDivForBox.className = "crystal"
+                    createDivForBox.style.height = "3rem";
+                    createDivForBox.style.width = "3rem";
+                    createBox.appendChild(createDivForBox);
+                }
             }
             createDiv.className = "sky"
         }
